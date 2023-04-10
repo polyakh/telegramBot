@@ -1,0 +1,10 @@
+{
+    "name": "telegram-bot",
+    "version": "0.0.1",
+    "scripts": {},
+    "dependencies": {
+        "dotenv": "16.0.3",
+        "mongodb": "5.2.0",
+        "node-telegram-bot-api": "0.61.0"
+    }
+}
