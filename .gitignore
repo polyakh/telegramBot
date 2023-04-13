@@ -7,3 +7,7 @@
 
 # local env files
 **/.env
+
+# SSL keys
+server.key
+server.crt

@@ -1,10 +1,26 @@
 {
     "name": "telegram-bot",
     "version": "0.0.1",
-    "scripts": {},
+    "type": "module",
+    "main": "index.mjs",
+    "scripts": {
+        "dev": "nodemon index.mjs",
+        "prettier": "prettier --check \"**/*.mjs\"",
+        "prettier:fix": "prettier --write \"**/*.mjs\""
+    },
     "dependencies": {
         "dotenv": "16.0.3",
         "mongodb": "5.2.0",
         "node-telegram-bot-api": "0.61.0"
+    },
+    "devDependencies": {
+        "husky": "8.0.3",
+        "nodemon": "2.0.22",
+        "prettier": "2.8.7"
+    },
+    "husky": {
+        "hooks": {
+            "pre-commit": "npm run prettier:fix"
+        }
     }
 }
