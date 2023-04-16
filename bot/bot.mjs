@@ -6,7 +6,7 @@ import { readFileSync } from "fs";
 
 //region Local Imports
 import { setupBotHandlers } from "./botHandlers.mjs";
-import { connectToDatabase } from "../db/db.mjs";
+import { connectToDatabase } from "../db/index.mjs";
 //endregion
 
 const token = process.env.TELEGRAM_BOT_TOKEN;
@@ -22,7 +22,7 @@ async function startBot() {
   try {
     const bot = new TelegramBot(token, { polling: true });
     await setupBotHandlers(bot);
-    // await connectToDatabase()
+    await connectToDatabase();
     console.log("Telegram bot started");
   } catch (error) {
     console.error("Error starting Telegram bot:", error);

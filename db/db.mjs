@@ -1,9 +1,10 @@
 //region Local Imports
-import MongoClient from "mongodb";
+import mongodb from "mongodb";
+const { MongoClient } = mongodb;
 //endregion
 
+import { getCurrentDBСollection } from "../db/index.mjs";
 import { getCurrentTimestamp } from "./utilities.mjs";
-
 let cachedClient;
 
 async function connectToDatabase(uri = process.env.MONGODB_URI) {
@@ -18,7 +19,7 @@ async function connectToDatabase(uri = process.env.MONGODB_URI) {
 
   try {
     await client.connect();
-    console.log("Connected to MongoDB");
+    console.log("~Connected to MongoDB");
     cachedClient = client;
     return cachedClient;
   } catch (error) {
@@ -28,8 +29,7 @@ async function connectToDatabase(uri = process.env.MONGODB_URI) {
 }
 
 async function saveMessageToDatabase({ chatId, message, firstName }) {
-  const client = await connectToDatabase();
-  const collenction = client.db(process.env.MONGO_DATABASE_NAME).collection(process.env.MONGO_DATABASE_COLLECTION_NAME);
+  const collenction = await getCurrentDBСollection();
   await collenction.insertOne({
     chatId,
     message,

@@ -9,6 +9,7 @@
         "prettier:fix": "prettier --write \"**/*.mjs\""
     },
     "dependencies": {
+        "ajv": "^8.12.0",
         "dotenv": "16.0.3",
         "mongodb": "5.2.0",
         "node-telegram-bot-api": "0.61.0"
