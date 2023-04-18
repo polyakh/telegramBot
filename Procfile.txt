@@ -1,2 +1,2 @@
 web: node index.mjs
-dev: nodemon index.mjs
+start: nodemon index.mjs
