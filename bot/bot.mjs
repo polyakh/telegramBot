@@ -26,7 +26,6 @@ async function startBot() {
     await setupBotHandlers(bot);
     await connectToDatabase();
     console.log("Telegram bot started");
-    const url = `https://${HEROKU_APP_NAME}.herokuapp.com:${PORT}`;
     await bot.setWebHook(APP_URL, {
       max_connections: 1,
     });
