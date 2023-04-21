@@ -11,7 +11,9 @@ export const createValidator = (schema) => {
       return data;
     }
     const errors = validate.errors ? validate.errors.filter((err) => err.keyword !== "if") : [];
-    const errorMessage = `Validation failed: ${ajv.errorsText(errors, { dataVar: "schemaValidation" })}\n\n${JSON.stringify(data, null, 2)}`;
+    const errorMessage = `Validation failed: ${ajv.errorsText(errors, {
+      dataVar: "schemaValidation"
+    })}\n\n${JSON.stringify(data, null, 2)}`;
     throw new Error(errorMessage);
   };
 

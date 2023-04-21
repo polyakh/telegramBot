@@ -13,4 +13,30 @@ function isRateLimited(userId) {
   return false;
 }
 
-export { isRateLimited };
+function createKeyboard(options) {
+  return {
+    keyboard: options.map(({ text }) => [{ text }]),
+    resize_keyboard: true,
+    one_time_keyboard: true,
+    selective: true
+  };
+}
+
+const options = [
+  { text: "Записатися на консультацію" },
+  { text: "Легалізація" },
+  { text: "Запис на реєстрацію діяльності" }
+];
+
+function handleFirstVisit({ bot, chatId, firstName }) {
+  bot.sendMessage(
+    chatId,
+    `Привіт 🙋‍♀️Тебе вітає Legal Expert-бот. 
+Тут ти знайдеш інформацію щодо юридичних послуг для тебе і твого бізнесу
+Тисни старт та обирай ту юридичну послугу, яка тобі пасує
+  `,
+    { reply_markup: createKeyboard(options) }
+  );
+}
+
+export { isRateLimited, handleFirstVisit };
