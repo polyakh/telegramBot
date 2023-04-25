@@ -35,7 +35,16 @@ function handleFirstVisit({ bot, chatId, firstName }) {
 Тут ти знайдеш інформацію щодо юридичних послуг для тебе і твого бізнесу
 Тисни старт та обирай ту юридичну послугу, яка тобі пасує
   `,
-    { reply_markup: createKeyboard(options) }
+    { reply_markup: {
+      inline_keyboard: [
+        [
+          {
+            text: 'Записатися на консультацію',
+            url: process.env.CALENDLY_SCHEDULING_URL
+          }
+        ]
+      ]
+    } }
   );
 }
 

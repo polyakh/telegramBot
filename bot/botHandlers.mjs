@@ -52,37 +52,11 @@ const config = {
 };
 
 async function handleSchedule(bot, chatId) {
-  console.log('handleSchedule')
   try {
     const response = await axios.get('https://api.calendly.com/users/me/events', config);
 
-    // Get the list of events from the response
-    const events = response.data.collection;
 
-    // Create a list of events to display
-    const eventList = events.map((event, index) => {
-      return `${index + 1}. ${event.name} - ${event.start_time}`;
-    });
-
-    // Display the list of events and ask the user to select one or more events
-    bot.sendMessage(chatId, `Here are your upcoming events:\n\n${eventList.join('\n')}\n\nPlease select one or more events by entering the corresponding numbers separated by commas.`);
-
-    // Wait for the user to respond with their selection
-    bot.once('message', async (selectedMsg) => {
-      // Parse the user's selection
-      const selectedEvents = selectedMsg.text.split(',').map((number) => {
-        return events[number - 1];
-      });
-
-      // Create a message with the selected events
-      let reply = '';
-      selectedEvents.forEach((event) => {
-        // reply += `Event Name: ${event.name}\nStart Time: ${event.start_time}\n\n`;
-      });
-
-      // Send the message with the selected events to the user
-      bot.sendMessage(chatId, `You have selected the following events:\n\n${reply}`);
-    });
+  
   } catch (error) {
     console.error(error);
     bot.sendMessage(chatId, 'Sorry, an error occurred while fetching your events. Please try again later.');
