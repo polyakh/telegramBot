@@ -54,9 +54,6 @@ const config = {
 async function handleSchedule(bot, chatId) {
   try {
     const response = await axios.get('https://api.calendly.com/users/me/events', config);
-
-
-  
   } catch (error) {
     console.error(error);
     bot.sendMessage(chatId, 'Sorry, an error occurred while fetching your events. Please try again later.');
