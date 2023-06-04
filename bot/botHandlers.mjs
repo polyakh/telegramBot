@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from "axios";
 
 //region Local Imports
 import { EVENTS } from "./consts.mjs";
@@ -48,17 +48,16 @@ function handleIncomingMessage({ bot, chatId, message, firstName }) {
   saveMessageToDatabase({ chatId, message, firstName });
 }
 const config = {
-  headers: { 'Authorization': `Bearer ${process.env.CALENDLY_API_KEY}` }
+  headers: { Authorization: `Bearer ${process.env.CALENDLY_API_KEY}` }
 };
 
 async function handleSchedule(bot, chatId) {
   try {
-    const response = await axios.get('https://api.calendly.com/users/me/events', config);
+    const response = await axios.get("https://api.calendly.com/users/me/events", config);
   } catch (error) {
     console.error(error);
-    bot.sendMessage(chatId, 'Sorry, an error occurred while fetching your events. Please try again later.');
+    bot.sendMessage(chatId, "Sorry, an error occurred while fetching your events. Please try again later.");
   }
-  
 }
 
 function handleHelloMessage({ bot, chatId, firstName }) {
@@ -74,7 +73,7 @@ function handleReturningUser(bot, chatId) {
 }
 
 function handleKeyboard(bot, chatId) {
-  console.log('handleKeyboard')
+  console.log("handleKeyboard");
 }
 
 export { setupBotHandlers };

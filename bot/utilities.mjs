@@ -31,20 +31,34 @@ const options = [
 function handleFirstVisit({ bot, chatId, firstName }) {
   bot.sendMessage(
     chatId,
-    `Привіт 🙋‍♀️Тебе вітає Legal Expert-бот. 
+    `Привіт, ${firstName} 🙋‍♀️Тебе вітає Legal Expert-бот. 
 Тут ти знайдеш інформацію щодо юридичних послуг для тебе і твого бізнесу
 Тисни старт та обирай ту юридичну послугу, яка тобі пасує
   `,
-    { reply_markup: {
-      inline_keyboard: [
-        [
-          {
-            text: 'Записатися на консультацію',
-            url: process.env.CALENDLY_SCHEDULING_URL
-          }
+    {
+      reply_markup: {
+        inline_keyboard: [
+          [
+            {
+              text: "Записатися на консультацію",
+              url: process.env.CALENDLY_SCHEDULING_URL
+            }
+          ],
+          [
+            {
+              text: "Запис на реєстрацію діяльності",
+              callback_data: "book_activity_registration"
+            }
+          ],
+          [
+            {
+              text: "Легалізація",
+              callback_data: "request_legalization"
+            }
+          ]
         ]
-      ]
-    } }
+      }
+    }
   );
 }
 

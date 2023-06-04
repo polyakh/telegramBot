@@ -1,6 +1,6 @@
 //region Global Imports
 import "dotenv/config.js";
-//endregion
+//end region
 
 import { startBot } from "./bot/bot.mjs";
 
