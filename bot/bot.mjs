@@ -3,7 +3,7 @@ import TelegramBot from "node-telegram-bot-api";
 //endregion
 
 //region Local Imports
-import { setupBotHandlers } from "./botHandlers.mjs";
+import { setupBotHandlers } from "./setupBotHandlers.mjs";
 import { connectToDatabase } from "../db/index.mjs";
 //endregion
 

@@ -1,4 +1,4 @@
 export * from "./bot.mjs";
-export * from "./botHandlers.mjs";
-export * from "./utilities.mjs";
+export * from "./handlers.mjs";
+export * from "./utilities";
 export * from "./consts.mjs";
