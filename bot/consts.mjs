@@ -3,4 +3,10 @@ const EVENTS = {
   CALLBACK_QUERY: "callback_query"
 };
 
-export { EVENTS };
+const CALLBACK_EVENTS = {
+  book_activity_registration: 'book_activity_registration',
+  request_legalization: 'request_legalization'
+}
+
+
+export { EVENTS, CALLBACK_EVENTS };

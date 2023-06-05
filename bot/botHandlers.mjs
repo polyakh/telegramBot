@@ -23,7 +23,7 @@ async function setupBotHandlers(inputBot) {
 
   inputBot.on(EVENTS.CALLBACK_QUERY, (callbackQuery) => {
     try {
-      handleCallbackQuery(bot, callbackQuery);
+      handleCallbackQuery(inputBot, callbackQuery);
     } catch (error) {
       console.error(`Error ${EVENTS.CALLBACK_QUERY}:`, error);
     }
@@ -49,6 +49,12 @@ function handleIncomingMessage({ bot, chatId, message, firstName }) {
   saveMessageToDatabase({ chatId, message, firstName });
 }
 
+
+function handleCallbackQuery(bot, { data, message }) {
+  console.log("handleKeyboard", callbackQuery);
+}
+
+
 function handleHelloMessage({ bot, chatId, firstName }) {
   bot.sendMessage(chatId, `Hello, ${firstName}!`);
 }
@@ -61,8 +67,5 @@ function handleReturningUser(bot, chatId) {
   bot.sendMessage(chatId, "Welcome back!");
 }
 
-function handleCallbackQuery(bot, callbackQuery) {
-  console.log("handleKeyboard");
-}
 
 export { setupBotHandlers };
