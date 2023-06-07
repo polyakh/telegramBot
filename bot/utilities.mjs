@@ -1,4 +1,3 @@
-const userRequests = {};
 
 function createKeyboard(options) {
   return {

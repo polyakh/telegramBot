@@ -8,4 +8,8 @@ const CALLBACK_EVENTS = {
   request_legalization: "request_legalization"
 };
 
-export { EVENTS, CALLBACK_EVENTS };
+const ASKING_FOR_USER_NAME = 'askingForUserName';
+
+const chatState = {};  // state for each chat
+
+export { EVENTS, CALLBACK_EVENTS, ASKING_FOR_USER_NAME, chatState };

@@ -1,14 +1,19 @@
 //region Local Imports
-import { CALLBACK_EVENTS } from "./consts.mjs";
+import { CALLBACK_EVENTS, chatState, ASKING_FOR_USER_NAME } from "./consts.mjs";
 import { saveMessageToDatabase } from "../db/index.mjs";
 import { isRateLimited } from "./utilities/isRateLimited.mjs";
 //endregion
+
+
 
 function handleIncomingMessage({ bot, chatId, message, firstName }) {
   // Check if user is rate limited
   if (isRateLimited(chatId)) {
     bot.sendMessage(chatId, "You are sending too many requests. Please try again later.");
     return;
+  }
+  if(chatState[chatId] === ASKING_FOR_USER_NAME) {
+    return; //
   }
   switch (true) {
     case /^\/start/i.test(message):
@@ -24,6 +29,11 @@ function handleIncomingMessage({ bot, chatId, message, firstName }) {
 
 function handleCallbackQuery(bot, { data, message }) {
   if (data === CALLBACK_EVENTS.book_activity_registration) {
+    
+  }
+
+
+  if (data === CALLBACK_EVENTS.book_activity_registration) {
     const { message_id } = bot.sendMessage(
       message.chat.id,
       "Підкажіть, будь ласка, ваше ім'я? Це необхідно для розуміння як до вас звертатися",
@@ -33,6 +43,7 @@ function handleCallbackQuery(bot, { data, message }) {
         }
       }
     );
+    chatState[message.chat.id] = ASKING_FOR_USER_NAME;
   }
 }
 

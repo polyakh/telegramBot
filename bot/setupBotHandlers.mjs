@@ -1,6 +1,8 @@
 import { EVENTS } from "./consts.mjs";
 import { handleIncomingMessage, handleCallbackQuery } from "./handlers.mjs";
 
+
+
 async function setupBotHandlers(inputBot) {
   inputBot.on(EVENTS.MESSAGE, (msg) => {
     const {

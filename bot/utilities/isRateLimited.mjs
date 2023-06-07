@@ -1,3 +1,5 @@
+const userRequests = {};
+
 export function isRateLimited(userId) {
     const now = Date.now();
     const interval = 1000 * 60; // 1 minute interval
