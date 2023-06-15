@@ -9,7 +9,6 @@ async function setupBotHandlers(inputBot) {
       from: { first_name: firstName },
       reply_to_message
     } = msg;
-    console.log('@', reply_to_message)
     try {
       // Handle incoming messages
       handleIncomingMessage({ bot: inputBot, chatId, message, firstName, reply_to_message });
