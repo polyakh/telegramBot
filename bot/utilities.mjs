@@ -1,4 +1,3 @@
-
 function createKeyboard(options) {
   return {
     keyboard: options.map(({ text }) => [{ text }]),
