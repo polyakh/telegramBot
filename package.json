@@ -6,7 +6,7 @@
     "main": "index.mjs",
     "scripts": {
         "dev": "nodemon index.mjs",
-        "build": "esbuild index.mjs --bundle --platform=node --outdir=assets",
+        "build": "esbuild index.mjs --bundle --platform=node --outdir=public",
         "prettier": "prettier --check \"**/*.mjs\"",
         "prettier:fix": "prettier --write \"**/*.mjs\""
     },
