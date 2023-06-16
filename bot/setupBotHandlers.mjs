@@ -17,8 +17,6 @@ async function setupBotHandlers(inputBot) {
     }
   });
 
-
-  
   inputBot.on(EVENTS.CALLBACK_QUERY, (callbackQuery) => {
     try {
       handleCallbackQuery(inputBot, callbackQuery);

@@ -8,15 +8,17 @@
         "dev": "nodemon index.mjs",
         "clean": "rimraf ./public",
         "prebuild": "npm run clean",
-        "start": "node ./public/index.js",
-        "build": "esbuild index.mjs --bundle --minify --platform=node --outdir=public",
+        "build": "rollup -c",
+        "build:prod": "NODE_ENV=production rollup -c",
+
+        "start": "node public/bundle.js",
         "prettier": "prettier --check \"**/*.mjs\"",
         "prettier:fix": "prettier --write \"**/*.mjs\""
     },
     "dependencies": {
+        "@rollup/plugin-terser": "0.4.3",
         "ajv": "8.12.0",
         "dotenv": "16.0.3",
-        "esbuild": "0.18.3",
         "mongodb": "5.2.0",
         "node-telegram-bot-api": "0.61.0",
         "nodemailer": "6.9.3",
@@ -26,7 +28,8 @@
     "devDependencies": {
         "husky": "8.0.3",
         "nodemon": "2.0.22",
-        "prettier": "2.8.7"
+        "prettier": "2.8.7",
+        "rollup": "3.25.1"
     },
     "husky": {
         "hooks": {

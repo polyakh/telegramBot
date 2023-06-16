@@ -1,9 +1,9 @@
 //region Local Imports
 import { CALLBACK_EVENTS, chatState } from "./consts.mjs";
 import { saveMessageToDatabase } from "../db/index.mjs";
-import { messageIdsMap } from './sharedState.mjs'
+import { messageIdsMap } from "./sharedState.mjs";
 import { isRateLimited } from "./utilities/isRateLimited.mjs";
-import { createTransporter, mailOptions } from '../mailer.mjs'
+import { createTransporter, mailOptions } from "../mailer.mjs";
 //endregion
 const transporter = createTransporter();
 
@@ -13,9 +13,8 @@ function handleIncomingMessage({ bot, chatId, message, firstName, reply_to_messa
     bot.sendMessage(chatId, "You are sending too many requests. Please try again later.");
     return;
   }
-  console.log('messageIdsMap', message);
+  console.log("messageIdsMap", message);
   const messageId = messageIdsMap.get(chatId);
-
 
   let isMessageIdMatched = messageId === reply_to_message?.message_id;
   switch (true) {
@@ -98,13 +97,13 @@ async function handleCallbackQuery(
 
     transporter.sendMail(mailOptions, (error, info) => {
       if (error) {
-          console.log(error);
-          bot.sendMessage(chatId, 'Failed to send email');
+        console.log(error);
+        bot.sendMessage(chatId, "Failed to send email");
       } else {
-          console.log('Email sent: ' + info.response);
-          bot.sendMessage(chatId, 'Email sent successfully');
+        console.log("Email sent: " + info.response);
+        bot.sendMessage(chatId, "Email sent successfully");
       }
-  });
+    });
     messageIdsMap.set(chatId, message_id);
   }
 }
@@ -149,19 +148,18 @@ function handleUnknownMessage(bot, chatId) {
 
 function sendMessageWithAskBaseInformation(chatId, optionNumber) {
   var options = {
-      reply_markup: JSON.stringify({
+    reply_markup: JSON.stringify({
       inline_keyboard: [
-          [{ text: `Sub-option ${optionNumber}.1`, callback_data: `${optionNumber}_1` }],
-          [{ text: `Sub-option ${optionNumber}.2`, callback_data: `${optionNumber}_2` }]
+        [{ text: `Sub-option ${optionNumber}.1`, callback_data: `${optionNumber}_1` }],
+        [{ text: `Sub-option ${optionNumber}.2`, callback_data: `${optionNumber}_2` }]
       ]
-      })
+    })
   };
   bot.sendMessage(chatId, `Дякуємо ми зв'яжемося з вами щодо вашого питання найближчим часом.`, options);
 }
 function handleSayGoodbyeSoon(bot, chatId) {
   bot.sendMessage(chatId, "Дякуємо ми зв'яжемося з вами щодо вашого питання найближчим часом.");
 }
-
 
 function handleReturningUser(bot, chatId) {
   bot.sendMessage(chatId, "Welcome back!");
