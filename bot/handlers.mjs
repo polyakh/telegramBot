@@ -3,7 +3,9 @@ import { CALLBACK_EVENTS, OPTIONS, chatState } from "./consts.mjs";
 import { messageIdsMap } from "./sharedState.mjs";
 import { validatePhoneNumber } from "./validation/numberValidation.mjs";
 import { isRateLimited } from "./utilities/isRateLimited.mjs";
+import { createTransporter, mailOptions } from "../mailer.mjs";
 //endregion
+const transporter = createTransporter();
 
 function handleIncomingMessage({ bot, chatId, message, firstName, reply_to_message, userId }) {
   // Check if user is rate limited
@@ -90,7 +92,9 @@ function handleFirstVisit({ bot, chatId, firstName }) {
   bot.sendMessage(
     chatId,
     `Привіт 🙋‍♀️Тебе вітає Legal Expert-бот. 
+    `Привіт 🙋‍♀️Тебе вітає Legal Expert-бот. 
 Тут ти знайдеш інформацію щодо юридичних послуг для тебе і твого бізнесу
+Обирай ту юридичну послугу, яка тобі пасує
 Обирай ту юридичну послугу, яка тобі пасує
   `,
     {
@@ -139,5 +143,7 @@ async function handleSayGoodbyeSoon({bot, chatId, msg, userId, firstName}) {
     // console.log('msg', msg);
   }
 }
+
+export { handleIncomingMessage, handleCallbackQuery, handleFirstVisit };
 
 export { handleIncomingMessage, handleCallbackQuery, handleFirstVisit };
