@@ -7,8 +7,6 @@ const CALLBACK_EVENTS = {
   book_activity_registration: "book_activity_registration",
   request_legalization: "request_legalization",
   ask_base_information: "ask_base_information"
-  request_legalization: "request_legalization",
-  ask_base_information: "ask_base_information"
 };
 
 const OPTIONS = {
