@@ -4,7 +4,6 @@ import TelegramBot from "node-telegram-bot-api";
 
 //region Local Imports
 import { setupBotHandlers } from "./setupBotHandlers.mjs";
-import { connectToDatabase } from "../db/index.mjs";
 //endregion
 
 const { TELEGRAM_BOT_TOKEN } = process.env;
@@ -22,7 +21,6 @@ async function startBot() {
   try {
     const bot = new TelegramBot(TELEGRAM_BOT_TOKEN, optionsTelegramBot);
     await setupBotHandlers(bot);
-    await connectToDatabase();
     console.log("Telegram bot started");
   } catch (error) {
     console.error("Error starting Telegram bot:", error);
